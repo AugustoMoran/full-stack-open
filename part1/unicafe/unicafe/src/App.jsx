@@ -1,15 +1,14 @@
 import { useState } from 'react'
 
 
-const Hello = (props) => {
-  const bornYear = () =>{
-    const yearNow = new Date().getFullYear()
-    return yearNow - props.age
-  }
+const Hello = ({name, age}) => {
+
+  const bornYear = () => new Date().getFullYear() - age
+  
   return (
     <div>
       <p>
-        Hello {props.name}, you are {props.age} years old
+        Hello {name}, you are {age} years old
       </p>
       <p>tu anio de nacimiento probalemente es {bornYear()}</p>
     </div>
