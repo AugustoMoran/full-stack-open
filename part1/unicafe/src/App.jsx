@@ -13,7 +13,10 @@ const History = ({allClicks}) => {
     </div>
   )
 }
-
+const Button = ({onClick, text}) => (
+  <button onClick={onClick} >{text}</button>
+)
+const Display = ({value}) => (<div>{value}</div>)
 
 const App = () => {
   const [left, setLeft] = useState(0)
@@ -28,7 +31,7 @@ const App = () => {
   
   const [getHelloMsj, setHelloMsj] = useState(null)
 
-  const setToValue = (newValue) => () => {
+  const setToValue = (newValue) => () =>{
     console.log('value now', newValue)
     setValue(newValue)
   }
@@ -56,18 +59,18 @@ const hello = (who) => () => {
 
   return (
     <div>
-      <p>left {left}</p> 
-      <button onClick={handleLeftClick}>left</button>
-      <button onClick={handleRightClick}>right</button>
-      <button onClick= {hello('World')} >hola World</button>
-      <button onClick={hello('react')}> hola react</button>
-      {getHelloMsj}
-      <button onClick={setToValue(0)}>restart</button>
-      <button onClick={setToValue(1000)}>tousand</button>
-      <button onClick={setToValue(value + 1)}>increment</button>
-      <p> right {right}</p> 
-      <p>Total {total}</p>
-      <p>value {value}</p>
+      <Display value={`left ${left}`} /> 
+      <Button onClick={handleLeftClick} text='left' />
+      <Button onClick={handleRightClick} text='right'/>
+      <Button onClick= {hello('World')} text='hello World' />
+      <Button onClick={hello('react')} text='hello React'/>
+      <Display value={getHelloMsj} />
+      <Button onClick={setToValue(0)} text='reset' />
+      <Button onClick={setToValue(1000)} text='tousand'/>
+      <Button onClick={setToValue(value + 1)} text='increment'/>
+      <Display value={`right ${right}`} /> 
+      <Display value= {`Total ${total}`}/>
+      <Display value= {`value ${value}`} />
       <History allClicks={allClicks} />
     </div>
   )
