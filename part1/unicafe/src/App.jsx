@@ -1,79 +1,62 @@
 import { useState } from 'react'
-const History = ({allClicks}) => {
-  if (allClicks.length === 0 ){
-    return(
-      <div>
-        the app is used by pressing the buttons
-      </div>
-    )
-  }
-  return (
-    <div>
-      button press history: {allClicks.join(' ')}
-    </div>
-  )
-}
-const Button = ({onClick, text}) => (
-  <button onClick={onClick} >{text}</button>
+
+const Header = ({text}) => (<h1>{text}</h1>)
+
+const Button = ({onClick, text}) => (<button onClick ={onClick}>{text}</button>)
+
+const StaticLine = ({text,value}) => (
+<table>
+  <tbody>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  </tbody>
+</table>
 )
-const Display = ({value}) => (<div>{value}</div>)
+
+const Statics = ({good,neutral,bad}) => {
+  const total = good + neutral + bad
+  const average = (good - bad) / total
+  const positive = (good / total)*100
+    if (total === 0){
+      return(
+        <div> no feedback give </div>
+      )
+    }else {
+       return(
+        <div>
+          <StaticLine text='good' value={good} />
+          <StaticLine text='neutral' value={neutral} />
+          <StaticLine text='bad' value={bad} />
+          <StaticLine text='total' value={total} />
+          <StaticLine text='average' value={average} />
+          <StaticLine text='positive' value={`${positive}%`} />
+        </div>
+      )
+    }
+}
 
 const App = () => {
-  const [left, setLeft] = useState(0)
-
-  const [right, setRight] = useState(0)
-
-  const [allClicks, setAll] = useState([])
-
-  const [total, setTotal] = useState(0)
-
-  const [value, setValue] = useState(10)
+  // guarda los clics de cada botón en su propio estado
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
   
-  const [getHelloMsj, setHelloMsj] = useState(null)
-
-  const setToValue = (newValue) => () =>{
-    console.log('value now', newValue)
-    setValue(newValue)
-  }
-
-const hello = (who) => () => {
-  console.log('hello', who)
-  setHelloMsj(<p> hello {who}</p>)
-
-  }
-  
-  const handleLeftClick = () => {
-    setAll(allClicks.concat('L'))
-    const upDateLeft = left + 1
-    setLeft(upDateLeft)
-    setTotal(upDateLeft + right)
-  }
-
-  const handleRightClick = () => {
-    setAll(allClicks.concat('R'))
-    const upDateRight = right + 1
-    setRight(upDateRight)
-    setTotal(upDateRight + left)
-  }
-  
-
+  const incrementGood = () => (setGood(good + 1))
+  const incrementNeutral = () => (setNeutral(neutral + 1))
+  const incrementBad = () => (setBad(bad + 1))
   return (
     <div>
-      <Display value={`left ${left}`} /> 
-      <Button onClick={handleLeftClick} text='left' />
-      <Button onClick={handleRightClick} text='right'/>
-      <Button onClick= {hello('World')} text='hello World' />
-      <Button onClick={hello('react')} text='hello React'/>
-      <Display value={getHelloMsj} />
-      <Button onClick={setToValue(0)} text='reset' />
-      <Button onClick={setToValue(1000)} text='tousand'/>
-      <Button onClick={setToValue(value + 1)} text='increment'/>
-      <Display value={`right ${right}`} /> 
-      <Display value= {`Total ${total}`}/>
-      <Display value= {`value ${value}`} />
-      <History allClicks={allClicks} />
+      <Header text ='give feedback' />
+      <Button onClick={incrementGood} text='good' />
+      <Button onClick={incrementNeutral} text='neutral' />
+      <Button onClick={incrementBad} text='bad' />
+      <Header text ='status' />
+      <Statics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
 
 export default App
+
