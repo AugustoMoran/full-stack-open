@@ -1,38 +1,93 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import personService from './services/persons'
+
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    {
-      name: 'Arto Hellas',
-      number: 1123456789
-    }
-  ])
-
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newBusqueda, setNewBusqueda] = useState('')
-
+  useEffect(() => {
+    console.log('effect')
+    personService
+      .getAll()
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+      .catch(error => {
+        console.error('Error fetching persons:', error)
+      })
+  }, [])
   const addPerson = (event) => {
     event.preventDefault()
+
     const personObject = {
       name: newName,
       number: newNumber
     }
-    const exist = persons.some(p => p.name === newName)
-    exist ?
-      window.alert(`${newName} is already added to phonebook`)
-    :
-    setPersons(persons.concat(personObject))
-    setNewName('')
-    setNewNumber('')
+
+    const existingPerson = persons.find(p => p.name === newName)
+
+    if (!existingPerson) {
+      personService.create(personObject)
+        .then(response => {
+          setPersons(persons.concat(response.data))
+          setNewName('')
+          setNewNumber('')
+        })
+        .catch(error => console.error('Error creating person:', error))
+
+      return
+    }
+
+
+    const seguro = window.confirm(
+      `${newName} ya está en la agenda. ¿Desea reemplazar el número?`
+    )
+
+    if (!seguro) {
+      console.log("Actualización cancelada")
+      return
+    }
+
+    personService
+      .update(existingPerson.id, { ...existingPerson, number: newNumber })
+      .then(response => {
+        setPersons(persons.map(
+          p => p.id !== existingPerson.id ? p : response.data
+        ))
+        setNewName('')
+        setNewNumber('')
+      })
+      .catch(error => {
+        console.error("Error updating:", error)
+      })
   }
+
 
   const handleNameChange = (event) => setNewName(event.target.value)
   const handleNumberChange = (event) => setNewNumber(event.target.value)
   const handleBusquedaChange = (event) => setNewBusqueda(event.target.value)
+
+  const deletePerson = (id) => {
+    const seguro = window.confirm('seguro desea eliminar el contacto')
+    if (seguro) {
+      console.log('Deleting person with id:', id)
+      personService.deletePerson(id)
+        .then(() => {
+          setPersons(persons.filter(p => p.id !== id))
+        })
+        .catch(error => {
+          console.error('Error deleting person:', error)
+        })
+    } else {
+      console.log('usuario cancelo la eliminacion')
+    }
+  }
 
   const filteredPersons = persons.filter(p =>
     p.name.toLowerCase().includes(newBusqueda.toLowerCase())
@@ -41,11 +96,6 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-
-      <Filter searchValue={newBusqueda} onSearchChange={handleBusquedaChange} />
-
-      <h2>Numbers (filtered)</h2>
-      <Persons persons={filteredPersons} />
 
       <h2>Add new</h2>
       <PersonForm
@@ -56,8 +106,14 @@ const App = () => {
         addPerson={addPerson}
       />
 
+      <Filter searchValue={newBusqueda} onSearchChange={handleBusquedaChange} />
+
+      <h2>Numbers (filtered)</h2>
+      <Persons persons={filteredPersons} onDelete={deletePerson} />
+
+
       <h2>All contacts</h2>
-      <Persons persons={persons} />
+      <Persons persons={persons} onDelete={deletePerson} />
     </div>
   )
 }
