@@ -1,0 +1,8 @@
+### Eliminar nota con ID 1
+DELETE http://localhost:3001/api/notes/1
+
+### Eliminar nota con ID 2
+DELETE http://localhost:3001/api/notes/2
+
+### Eliminar nota con ID 3
+DELETE http://localhost:3001/api/notes/3

@@ -1,0 +1,2 @@
+### Obtener todas las notas
+GET http://localhost:3001/api/notes
