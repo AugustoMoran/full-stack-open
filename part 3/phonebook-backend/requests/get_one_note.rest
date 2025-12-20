@@ -1,8 +1,0 @@
-### Obtener una nota específica
-GET http://localhost:3001/api/notes/1
-
-### Obtener nota con ID 2
-GET http://localhost:3001/api/notes/2
-
-### Obtener nota con ID 3
-GET http://localhost:3001/api/notes/3
