@@ -1,16 +1,38 @@
-# React + Vite
+# Anecdotes - Full Stack Open Part 1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación de anécdotas aleatorias con sistema de votación.
 
-Currently, two official plugins are available:
+## Ejercicios Completados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ 1.12-1.14: Anecdotes - Anécdotas aleatorias y votación
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🎲 Mostrar anécdota aleatoria
+- 👍 Votar por anécdotas
+- 🏆 Mostrar la anécdota más votada
+- ⚛️ Gestión de estados con useState
 
-## Expanding the ESLint configuration
+## Desarrollo Local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+La aplicación se abrirá en `http://localhost:5173`
+
+## Conceptos Aprendidos
+
+- `useState` para manejar estados
+- Arrays como estados
+- Inmutabilidad en React
+- Spread operator para copiar arrays
+- Funciones auxiliares para lógica de negocio
+- Math.random() para generar índices aleatorios
+
+## Tecnologías
+
+- React 19.2.0
+- Vite 7.2.4
+- ESLint 9.39.1

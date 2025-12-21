@@ -1,16 +1,45 @@
-# React + Vite
+# Course Info - Full Stack Open Part 1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación para mostrar información de cursos.
 
-Currently, two official plugins are available:
+## Ejercicios Completados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ 1.1-1.2: Course info - Componentes básicos
+- ✅ 1.3-1.5: Course info - Objetos y estructuras
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📚 Mostrar información del curso
+- 📝 Lista de partes del curso
+- 🔢 Total de ejercicios
+- 🧩 Componentes reutilizables
 
-## Expanding the ESLint configuration
+## Desarrollo Local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+La aplicación se abrirá en `http://localhost:5173`
+
+## Componentes
+
+- `Header`: Título del curso
+- `Content`: Contenido del curso
+- `Part`: Parte individual del curso
+- `Total`: Total de ejercicios
+
+## Conceptos Aprendidos
+
+- Componentes en React
+- Props (propiedades)
+- Objetos y arrays como props
+- Destructuring de props
+- JSX
+
+## Tecnologías
+
+- React 19.2.0
+- Vite 7.2.4
+- ESLint 9.39.1

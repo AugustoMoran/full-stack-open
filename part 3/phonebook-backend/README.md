@@ -5,9 +5,11 @@ Backend para la aplicación Phonebook del curso Full Stack Open.
 ## Tecnologías
 
 - Node.js
-- Express
+- Express 5.2.1
+- MongoDB + Mongoose 9.0.2
 - Morgan (logging)
 - CORS
+- dotenv
 
 ## Ejercicios completados
 
@@ -21,11 +23,28 @@ Backend para la aplicación Phonebook del curso Full Stack Open.
 - ✅ 3.9: Frontend integrado con backend
 - ✅ 3.10: Deploy a Fly.io
 - ✅ 3.11: Frontend production build
+- ✅ 3.12: Base de datos MongoDB
+- ✅ 3.13-3.14: Operaciones con MongoDB
+- ✅ 3.15-3.18: Validaciones con Mongoose
+- ✅ 3.19-3.21: ESLint y mejoras
+- ✅ 3.22: Variables de entorno en producción
 
 ## Desarrollo local
 
+### Configuración
+
+1. Instalar dependencias:
 ```bash
 npm install
+```
+
+2. Configurar variables de entorno:
+   - Copiar `.env.example` a `.env`
+   - Configurar `MONGODB_URI` con tu conexión a MongoDB
+   - Configurar `PORT` (opcional, default: 3001)
+
+3. Iniciar servidor en modo desarrollo:
+```bash
 npm run dev
 ```
 
@@ -55,5 +74,22 @@ Endpoints en producción:
 - `GET /api/persons` - Lista todos los contactos
 - `GET /api/persons/:id` - Obtiene un contacto específico
 - `POST /api/persons` - Agrega un nuevo contacto
+  - Body: `{ "name": "string", "number": "string" }`
+  - Validaciones: nombre mínimo 3 caracteres, número mínimo 8 caracteres
+- `PUT /api/persons/:id` - Actualiza un contacto existente
 - `DELETE /api/persons/:id` - Elimina un contacto
 - `GET /info` - Muestra información sobre la agenda
+
+## Estructura del Proyecto
+
+```
+phonebook-backend/
+├── index.js              # Servidor Express principal
+├── models/
+│   └── person.js        # Modelo de Mongoose para Person
+├── requests/            # Archivos .rest para testing
+├── dist/                # Frontend build (generado)
+├── .env                 # Variables de entorno (no en git)
+├── .env.example         # Plantilla de variables de entorno
+└── package.json         # Dependencias y scripts
+```

@@ -1,16 +1,52 @@
-# React + Vite
+# Countries - Full Stack Open Part 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación para buscar y visualizar información de países usando la API REST Countries.
 
-Currently, two official plugins are available:
+## Ejercicios Completados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ 2.18-2.20: Countries - Consumo de API externa y búsqueda
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🌍 Buscar países por nombre
+- 🔍 Filtrado dinámico
+- 📊 Detalles completos de cada país
+- 🏴 Banderas e información geográfica
+- 📍 Idiomas y capitales
 
-## Expanding the ESLint configuration
+## Desarrollo Local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+La aplicación se abrirá en `http://localhost:5173`
+
+## API Utilizada
+
+- **REST Countries API**: https://restcountries.com/v3.1/all
+- Proporciona datos completos de todos los países del mundo
+
+## Conceptos Aprendidos
+
+- Consumo de APIs externas con axios
+- Efectos secundarios con `useEffect`
+- Filtrado de datos dinámico
+- Renderizado condicional complejo
+- Manejo de estados asíncronos
+- Inputs controlados para búsqueda
+
+## Componentes
+
+- `App`: Componente principal
+- `CountriesPage`: Lógica de búsqueda y filtrado
+- `CountryDetails`: Detalles individuales del país
+
+## Tecnologías
+
+- React 19.2.0
+- Vite 7.2.4
+- Axios 1.4.0
+- ESLint 9.39.1
+- REST Countries API

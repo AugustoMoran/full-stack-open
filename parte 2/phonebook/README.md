@@ -1,16 +1,80 @@
-# React + Vite
+# Phonebook Frontend - Full Stack Open Part 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación de agenda telefónica con React y Vite.
 
-Currently, two official plugins are available:
+## Ejercicios Completados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ 2.6-2.10: Phonebook - Formularios y estados
+- ✅ 2.11: Phonebook - Filtrado de contactos
+- ✅ 2.12-2.14: Phonebook - Datos en servidor con axios
+- ✅ 2.15-2.18: Phonebook - CRUD completo
+- ✅ 2.19-2.20: Phonebook - Notificaciones y manejo de errores
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ✨ Agregar nuevos contactos
+- 🔍 Buscar y filtrar contactos
+- ✏️ Actualizar números de teléfono
+- 🗑️ Eliminar contactos
+- 📢 Notificaciones de éxito y error
+- 🔄 Integración completa con backend
 
-## Expanding the ESLint configuration
+## Desarrollo Local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Opción 1: Con json-server (modo desarrollo simple)
+
+```bash
+npm install
+npm run dev        # Frontend en puerto 5173
+npm run server     # JSON Server en puerto 3001 (en otra terminal)
+```
+
+### Opción 2: Con backend real (recomendado)
+
+1. Iniciar el backend (desde `part 3/phonebook-backend`):
+```bash
+npm run dev        # Backend en puerto 3001
+```
+
+2. Iniciar el frontend:
+```bash
+npm run dev        # Frontend en puerto 5173
+```
+
+El proxy de Vite redirigirá las peticiones `/api/*` al backend en `localhost:3001`.
+
+## Producción
+
+Para construir para producción:
+
+```bash
+npm run build
+```
+
+Los archivos se generarán en `/dist`. Estos archivos deben copiarse al directorio `dist/` del backend.
+
+## Estructura
+
+```
+phonebook/
+├── src/
+│   ├── App.jsx              # Componente principal
+│   ├── components/
+│   │   ├── Filter.jsx       # Componente de búsqueda
+│   │   ├── PersonForm.jsx   # Formulario para agregar/editar
+│   │   ├── Persons.jsx      # Lista de personas
+│   │   ├── Person.jsx       # Item individual
+│   │   └── Notification.jsx # Mensajes al usuario
+│   └── services/
+│       └── persons.js       # Servicio axios para API
+├── db.json                  # Base de datos local (json-server)
+└── vite.config.js           # Configuración con proxy
+```
+
+## Tecnologías
+
+- React 19.2.0
+- Vite 7.2.4
+- Axios 1.13.2
+- json-server 1.0.0 (dev)
+- ESLint 9.39.1
