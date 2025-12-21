@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const morgan = require('morgan')
+const Person = require('./models/person')
 
 // Middleware
 app.use(cors())
@@ -9,36 +11,12 @@ app.use(express.json())
 app.use(express.static('dist'))
 
 // Crear token personalizado para mostrar el body
-morgan.token('body', (req, res) => {
+morgan.token('body', (req) => {
   return JSON.stringify(req.body)
 })
 
 // Usar el token personalizado en el formato
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
-
-// Data
-let persons = [
-  { 
-    id: 1, 
-    name: "Arto Hellas", 
-    number: "040-123456"
-  },
-  { 
-    id: 2, 
-    name: "Ada Lovelace", 
-    number: "39-44-5323523"
-  },
-  { 
-    id: 3, 
-    name: "Dan Abramov", 
-    number: "12-43-234345"
-  },
-  { 
-    id: 4, 
-    name: "Mary Poppendieck", 
-    number: "39-23-6423122"
-  }
-]
 
 // Routes
 app.get('/', (request, response) => {
@@ -47,66 +25,98 @@ app.get('/', (request, response) => {
 
 // Exercise 3.2: Info page
 app.get('/info', (request, response) => {
-  const currentTime = new Date()
-  const personsCount = persons.length
-  
-  response.send(`
-    <p>Phonebook has info for ${personsCount} people</p>
-    <p>${currentTime}</p>
-  `)
+  Person.countDocuments({}).then(count => {
+    const currentTime = new Date()
+    response.send(`
+      <p>Phonebook has info for ${count} people</p>
+      <p>${currentTime}</p>
+    `)
+  })
 })
 
 // Exercise 3.1: Get all persons
 app.get('/api/persons', (request, response) => {
-  response.json(persons)
+  Person.find({}).then(persons => {
+    response.json(persons)
+  })
 })
 
 // Exercise 3.3: Get single person
-app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
-  
-  if (person) {
-    response.json(person)
-  } else {
-    response.status(404).end()
-  }
+app.get('/api/persons/:id', (request, response, next) => {
+  console.log('🔍 GET /api/persons/:id - Buscando persona con ID:', request.params.id)
+
+  Person.findById(request.params.id)
+    .then(person => {
+      if (person) {
+        console.log('✅ Persona encontrada:', person)
+        response.json(person)
+      } else {
+        console.log('❌ Persona no encontrada')
+        response.status(404).end()
+      }
+    })
+    .catch(error => next(error))
 })
 
 // Exercise 3.4: Delete person
-app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
-  response.status(204).end()
+app.delete('/api/persons/:id', (request, response, next) => {
+  console.log('🗑️  DELETE /api/persons/:id - Eliminando persona con ID:', request.params.id)
+
+  Person.findByIdAndDelete(request.params.id)
+    .then(() => {
+      console.log('✅ Persona eliminada')
+      response.status(204).end()
+    })
+    .catch(error => next(error))
+})
+
+// Exercise 3.17: Update person
+app.put('/api/persons/:id', (request, response, next) => {
+  const body = request.body
+  console.log('🔄 PUT /api/persons/:id - Actualizando persona con ID:', request.params.id)
+
+  const person = {
+    name: body.name,
+    number: body.number,
+  }
+
+  Person.findByIdAndUpdate(
+    request.params.id,
+    person,
+    { new: true, runValidators: true, context: 'query' }
+  )
+    .then(updatedPerson => {
+      console.log('✅ Persona actualizada:', updatedPerson)
+      response.json(updatedPerson)
+    })
+    .catch(error => next(error))
 })
 
 // Exercise 3.5-3.6: Add new person with validations
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body
+  console.log('📨 POST /api/persons - Intentando agregar nueva persona')
+  console.log('Datos recibidos:', body)
 
   // Exercise 3.6: Validate name and number exist
   if (!body.name || !body.number) {
-    return response.status(400).json({ 
-      error: 'name or number missing' 
+    console.log('❌ Error: Datos faltantes', { name: body.name, number: body.number })
+    return response.status(400).json({
+      error: 'name or number missing'
     })
   }
 
-  // Exercise 3.6: Check if name already exists
-  const nameExists = persons.find(person => person.name === body.name)
-  if (nameExists) {
-    return response.status(400).json({ 
-      error: 'name must be unique' 
-    })
-  }
-
-  const person = {
-    id: Math.floor(Math.random() * 1000000),
+  const person = new Person({
     name: body.name,
     number: body.number
-  }
+  })
 
-  persons = persons.concat(person)
-  response.json(person)
+  person.save()
+    .then(savedPerson => {
+      console.log('✅ Persona agregada exitosamente:', savedPerson)
+      response.json(savedPerson)
+    })
+    .catch(error => next(error))
 })
 
 // Middleware para rutas desconocidas
@@ -115,6 +125,22 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use(unknownEndpoint)
+
+// Exercise 3.16: Middleware de manejo de errores
+const errorHandler = (error, request, response, next) => {
+  console.error('❌ Error capturado:', error.message)
+
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' })
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
+
+  next(error)
+}
+
+// Este debe ser el último middleware cargado
+app.use(errorHandler)
 
 // Puerto configurado para Fly.io/Render
 const PORT = process.env.PORT || 3001
