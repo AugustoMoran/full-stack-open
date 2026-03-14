@@ -10,6 +10,9 @@ full-stack-open/
 ├── part1/                      # Parte 1: Intro a React
 ├── parte 2/                    # Parte 2: Servidor
 ├── part 3/phonebook-backend/   # Parte 3: Backend
+├── part 4/bloglist-backend/    # Parte 4: Backend testing
+├── parte 5/bloglist-frontend/  # Parte 5: Frontend testing
+└── parte-6/                    # Parte 6: Redux/React Query
 └── README.md                   # Documentación principal
 ```
 
@@ -155,6 +158,73 @@ Carpeta [`requests/`](part%203/phonebook-backend/requests/):
 **✅ Listo para entrega**: Sí
 
 ---
+
+## Parte 4: Testing de aplicaciones backend
+
+### Proyecto: `bloglist-backend`
+
+**Ubicación**: [`part 4/bloglist-backend/`](part%204/bloglist-backend/)
+
+**Configuración**:
+```bash
+cd "part 4/bloglist-backend"
+npm install
+cp .env.example .env
+npm run dev
+```
+
+**Tests**:
+```bash
+npm test
+```
+
+**✅ Listo para entrega**: Sí
+
+---
+
+## Parte 5: Testing de aplicaciones frontend
+
+### Proyecto: `bloglist-frontend`
+
+**Ubicación**: [`parte 5/bloglist-frontend/`](parte%205/bloglist-frontend/)
+
+**Comandos**:
+```bash
+cd "parte 5/bloglist-frontend"
+npm install
+npm run dev
+```
+
+**Tests**:
+```bash
+npm run test:run
+npm run test:e2e
+```
+
+**✅ Listo para entrega**: Sí
+
+---
+
+## Parte 6: State management (Redux + React Query)
+
+### Proyecto: `parte-6`
+
+**Ubicación**: [`parte-6/`](parte-6/)
+
+**Comandos**:
+```bash
+cd "parte-6"
+npm install
+npm run dev
+npm test
+```
+
+**Backend mock**:
+```bash
+npm run server
+```
+
+**✅ Listo para entrega**: Sí
 
 ## 🔧 Requisitos del Sistema
 

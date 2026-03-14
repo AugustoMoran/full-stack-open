@@ -1,4 +1,3 @@
-import { useState } from 'react'
 const Header = (props) => {
   console.log(props)
   return(

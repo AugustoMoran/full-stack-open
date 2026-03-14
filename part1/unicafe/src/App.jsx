@@ -5,14 +5,10 @@ const Header = ({text}) => (<h1>{text}</h1>)
 const Button = ({onClick, text}) => (<button onClick ={onClick}>{text}</button>)
 
 const StaticLine = ({text,value}) => (
-<table>
-  <tbody>
-    <tr>
-      <td>{text}</td>
-      <td>{value}</td>
-    </tr>
-  </tbody>
-</table>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 )
 
 const Statics = ({good,neutral,bad}) => {
@@ -21,18 +17,20 @@ const Statics = ({good,neutral,bad}) => {
   const positive = (good / total)*100
     if (total === 0){
       return(
-        <div> no feedback give </div>
+        <div>no feedback given</div>
       )
     }else {
        return(
-        <div>
-          <StaticLine text='good' value={good} />
-          <StaticLine text='neutral' value={neutral} />
-          <StaticLine text='bad' value={bad} />
-          <StaticLine text='total' value={total} />
-          <StaticLine text='average' value={average} />
-          <StaticLine text='positive' value={`${positive}%`} />
-        </div>
+        <table>
+          <tbody>
+            <StaticLine text='good' value={good} />
+            <StaticLine text='neutral' value={neutral} />
+            <StaticLine text='bad' value={bad} />
+            <StaticLine text='total' value={total} />
+            <StaticLine text='average' value={average} />
+            <StaticLine text='positive' value={`${positive}%`} />
+          </tbody>
+        </table>
       )
     }
 }

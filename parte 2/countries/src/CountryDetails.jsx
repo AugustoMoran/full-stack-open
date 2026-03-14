@@ -3,16 +3,14 @@ import './App.css'
 import service from './service/service'
 
 const CountryDetails = ({ country, onBack }) => {
-  if (!country) return null
-
-  const nativeName = country.name?.official || country.name?.common || ''
-
   const [weather, setWeather] = useState(null)
   const [weatherError, setWeatherError] = useState(null)
 
   useEffect(() => {
-    setWeather(null)
-    setWeatherError(null)
+    if (!country) {
+      return
+    }
+
     const cap = country.capital ? country.capital[0] : null
     if (!cap) {
       return
@@ -27,6 +25,10 @@ const CountryDetails = ({ country, onBack }) => {
         setWeatherError(err.message || 'No se pudo obtener el clima')
       })
   }, [country])
+
+  if (!country) return null
+
+  const nativeName = country.name?.official || country.name?.common || ''
 
   return (
     <div className="details">

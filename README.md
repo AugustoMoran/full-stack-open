@@ -89,6 +89,37 @@ Aplicación backend completa con:
 
 ---
 
+### Parte 4: Testing de aplicaciones backend
+
+#### `bloglist-backend`
+- API REST para blogs y usuarios
+- Autenticación JWT
+- Tests con `node --test`
+
+**Contenido**: [`part 4/bloglist-backend/`](part%204/bloglist-backend/)
+
+---
+
+### Parte 5: Testing de aplicaciones frontend
+
+#### `bloglist-frontend`
+- Login y manejo de blogs
+- Tests unitarios con Vitest
+- E2E con Playwright
+
+**Contenido**: [`parte 5/bloglist-frontend/`](parte%205/bloglist-frontend/)
+
+---
+
+### Parte 6: State management (Redux + React Query)
+
+#### `parte-6`
+- Anecdotes con Redux y React Query
+- JSON Server para backend mock
+- Tests de reducers y actions
+
+**Contenido**: [`parte-6/`](parte-6/)
+
 ## 🚀 Instrucciones de Uso
 
 ### Proyectos React (Partes 0, 1 y 2)
@@ -115,6 +146,31 @@ npm run dev
 ```
 
 El servidor se iniciará en `http://localhost:3001`
+
+### Backend (Parte 4)
+
+```bash
+cd "part 4/bloglist-backend"
+npm install
+cp .env.example .env
+npm run dev
+```
+
+### Frontend (Parte 5)
+
+```bash
+cd "parte 5/bloglist-frontend"
+npm install
+npm run dev
+```
+
+### Parte 6
+
+```bash
+cd "parte-6"
+npm install
+npm run dev
+```
 
 ---
 
@@ -144,6 +200,9 @@ El servidor se iniciará en `http://localhost:3001`
 | 1 | ✅ Completo | 1.1-1.14 |
 | 2 | ✅ Completo | 2.1-2.20 |
 | 3 | ✅ Completo | 3.1-3.22 |
+| 4 | ✅ Completo | 4.1-4.x |
+| 5 | ✅ Completo | 5.1-5.x |
+| 6 | ✅ Completo | 6.1-6.x |
 
 ---
 

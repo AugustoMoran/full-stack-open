@@ -23,10 +23,21 @@ npm run dev
 
 La aplicación se abrirá en `http://localhost:5173`
 
+### 🔑 Weather API
+
+Para mostrar el clima se usa OpenWeather. Configura la variable:
+
+```
+VITE_WEATHER_API_KEY=TU_API_KEY
+```
+
+Puedes copiar `.env.example` a `.env`.
+
 ## API Utilizada
 
 - **REST Countries API**: https://restcountries.com/v3.1/all
 - Proporciona datos completos de todos los países del mundo
+- **OpenWeather API**: https://openweathermap.org/api
 
 ## Conceptos Aprendidos
 

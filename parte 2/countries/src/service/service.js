@@ -12,7 +12,7 @@ const getCountryByCode = (code) => {
 }
 
 const getWeather = (city) => {
-	const apiKey = "4359dc82257ab46512e9eecfc3296b36"
+	const apiKey = import.meta.env.VITE_WEATHER_API_KEY
 	if (!apiKey) {
 		return Promise.reject(new Error('No weather API key configured'))
 	}

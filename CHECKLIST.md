@@ -121,6 +121,40 @@ Estado: **TODO LISTO PARA ENTREGAR** ✨
 
 ---
 
+### ✅ Parte 4: Testing de aplicaciones backend
+**Estado**: Completo
+
+#### Proyecto: `bloglist-backend`
+- ✅ Código funcionando: `part 4/bloglist-backend/index.js`
+- ✅ API REST con autenticación
+- ✅ Tests con `node --test`
+- ✅ `.env.example` incluido
+- ✅ README.md completo
+
+---
+
+### ✅ Parte 5: Testing de aplicaciones frontend
+**Estado**: Completo
+
+#### Proyecto: `bloglist-frontend`
+- ✅ Login y CRUD de blogs
+- ✅ Tests unitarios con Vitest
+- ✅ E2E con Playwright
+- ✅ README.md completo
+
+---
+
+### ✅ Parte 6: State management
+**Estado**: Completo
+
+#### Proyecto: `parte-6`
+- ✅ Redux + React Query
+- ✅ JSON Server para backend mock
+- ✅ Tests de reducers/actions
+- ✅ README.md completo
+
+---
+
 ## 📦 Archivos de Documentación
 
 ### README Principal
@@ -139,6 +173,9 @@ Estado: **TODO LISTO PARA ENTREGAR** ✨
 - ✅ `parte 2/phonebook/README.md`
 - ✅ `parte 2/countries/README.md`
 - ✅ `part 3/phonebook-backend/README.md`
+- ✅ `part 4/bloglist-backend/README.md`
+- ✅ `parte 5/bloglist-frontend/README.md`
+- ✅ `parte-6/README.md`
 
 ---
 
@@ -180,7 +217,10 @@ Estado: **TODO LISTO PARA ENTREGAR** ✨
 | 1 | 1.1-1.14 (14) | ✅ Completo |
 | 2 | 2.1-2.20 (20) | ✅ Completo |
 | 3 | 3.1-3.22 (22) | ✅ Completo |
-| **TOTAL** | **59 ejercicios** | ✅ **100% Completo** |
+| 4 | 4.x | ✅ Completo |
+| 5 | 5.x | ✅ Completo |
+| 6 | 6.x | ✅ Completo |
+| **TOTAL** | **59+ ejercicios** | ✅ **100% Completo** |
 
 ---
 

@@ -82,7 +82,12 @@ const App = () => {
       })
       .catch(error => {
         console.error("Error updating:", error)
-        setMessage(`Error updating ${existingPerson.name}`)
+        if (error?.response?.status === 404) {
+          setPersons(persons.filter(p => p.id !== existingPerson.id))
+          setMessage(`Information of ${existingPerson.name} has already been removed from server`)
+        } else {
+          setMessage(`Error updating ${existingPerson.name}`)
+        }
         setMessageType('error')
         setTimeout(() => {
           setMessage(null)
