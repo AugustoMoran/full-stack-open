@@ -1,0 +1,38 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "Hook useState allows functional components to use state"
+    },
+    {
+      "id": 2,
+      "content": "Hook useEffect lets you perform side effects in functional components"
+    },
+    {
+      "id": 3,
+      "content": "Custom hooks are functions whose names start with use and may call other hooks"
+    },
+    {
+      "content": "una nueva noche fria",
+      "id": 4
+    }
+  ],
+  "persons": [
+    {
+      "id": 1,
+      "name": "Arto Hellas"
+    },
+    {
+      "id": 2,
+      "name": "Dan Abramov"
+    },
+    {
+      "id": 3,
+      "name": "Jani Eväkallio"
+    },
+    {
+      "name": "si ser",
+      "id": 4
+    }
+  ]
+}
